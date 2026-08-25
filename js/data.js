@@ -76,6 +76,33 @@ const FOOD_DB = [
   { id: "f25", name: "Whey Protein", kcal: 380, protein: 75, carbs: 8, fat: 6 },
 ];
 
+const CATEGORY_COLORS = {
+  Brust: "pink",
+  Rücken: "green",
+  Beine: "yellow",
+  Schultern: "blue",
+  Bizeps: "violet",
+  Trizeps: "orange",
+  Waden: "teal",
+  Core: "gray",
+  Ganzkörper: "blue",
+};
+const CATEGORY_PALETTE = ["blue", "pink", "green", "yellow", "violet", "orange", "teal"];
+
+function colorForCategory(name) {
+  if (CATEGORY_COLORS[name]) return CATEGORY_COLORS[name];
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) hash = (hash * 31 + name.charCodeAt(i)) >>> 0;
+  return CATEGORY_PALETTE[hash % CATEGORY_PALETTE.length];
+}
+
+const MEAL_SLOT_COLORS = {
+  Frühstück: "yellow",
+  Mittagessen: "blue",
+  Abendessen: "violet",
+  Snack: "green",
+};
+
 const MEAL_SLOTS = ["Frühstück", "Mittagessen", "Abendessen", "Snack"];
 
 const SEED_MEALS = [

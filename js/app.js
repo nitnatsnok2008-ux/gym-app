@@ -156,11 +156,16 @@ function exerciseCardHTML(ex) {
     return `<span class="weight-chip">${w}kg</span>`;
   }).join("");
 
+  const color = colorForCategory(ex.category);
+
   return `
   <div class="card exercise-card fade-in" data-log-ex="${ex.id}">
     <div class="exercise-top">
-      <div>
-        <span class="chip chip-tag">${ex.category}</span>
+      <div class="icon-chip icon-chip-${color}">
+        <svg viewBox="0 0 24 24"><path d="M6.5 6.5l11 11M4 9l3-3 2 2-3 3zM15 18l3-3 2 2-3 3zM2 12l2-2 2 2-2 2zM18 8l2-2 2 2-2 2z"/></svg>
+      </div>
+      <div class="exercise-info">
+        <span class="category-label category-${color}">${ex.category}</span>
         <h4>${ex.name}</h4>
         <p class="muted">${ex.targetSets} Sätze · ${ex.targetReps} Wdh.</p>
       </div>
@@ -379,8 +384,9 @@ function todayNutritionTotals() {
 }
 
 function mealRowHTML(m) {
+  const color = MEAL_SLOT_COLORS[m.slot] || "gray";
   return `
-  <div class="card row-card meal-row ${m.eaten ? "is-checked" : ""}" data-meal-toggle="${m.id}">
+  <div class="card row-card meal-row meal-row-${color} ${m.eaten ? "is-checked" : ""}" data-meal-toggle="${m.id}">
     <span class="checkbox ${m.eaten ? "checked" : ""}">
       <svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg>
     </span>

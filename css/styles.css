@@ -17,6 +17,8 @@
   --green: #55d68a;
   --yellow: #ffd166;
   --orange: #ff9f5a;
+  --violet: #9e7fff;
+  --teal: #5ed6d1;
 
   --radius-lg: 28px;
   --radius-md: 20px;
@@ -42,6 +44,7 @@ html, body {
   -webkit-font-smoothing: antialiased;
   height: 100%;
   overscroll-behavior-y: none;
+  font-variant-numeric: tabular-nums;
 }
 
 button, input, select {
@@ -68,8 +71,9 @@ svg {
   display: flex;
   flex-direction: column;
   background:
-    radial-gradient(600px 300px at 80% -10%, rgba(79, 124, 255, 0.18), transparent 60%),
-    radial-gradient(500px 260px at -10% 10%, rgba(127, 208, 255, 0.10), transparent 60%),
+    radial-gradient(640px 420px at 85% -8%, rgba(79, 124, 255, 0.30), transparent 62%),
+    radial-gradient(420px 320px at -15% 8%, rgba(127, 208, 255, 0.14), transparent 60%),
+    radial-gradient(480px 360px at 100% 60%, rgba(255, 111, 176, 0.08), transparent 65%),
     var(--bg);
   overflow: hidden;
 }
@@ -184,11 +188,20 @@ svg {
 }
 .hero-glow {
   position: absolute;
-  inset: -40% -20% auto auto;
-  width: 260px;
-  height: 260px;
-  background: radial-gradient(circle, rgba(127, 208, 255, 0.35), transparent 70%);
-  filter: blur(10px);
+  inset: -55% -25% auto auto;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(127, 208, 255, 0.45), transparent 70%);
+  filter: blur(14px);
+  pointer-events: none;
+}
+.hero-glow-2 {
+  position: absolute;
+  inset: auto auto -50% -15%;
+  width: 240px;
+  height: 240px;
+  background: radial-gradient(circle, rgba(255, 111, 176, 0.18), transparent 72%);
+  filter: blur(16px);
   pointer-events: none;
 }
 .hero-top { margin-bottom: 10px; }
@@ -222,6 +235,44 @@ svg {
   color: #9db8ff;
   margin-bottom: 8px;
 }
+
+/* ===== Icon chips (colored square icon tiles) ===== */
+.icon-chip {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.icon-chip svg { width: 19px; height: 19px; }
+
+.icon-chip-blue   { background: rgba(79, 124, 255, 0.16); color: #8fb0ff; }
+.icon-chip-pink   { background: rgba(255, 111, 176, 0.16); color: #ff9fce; }
+.icon-chip-green  { background: rgba(85, 214, 138, 0.16); color: #8ef0b5; }
+.icon-chip-yellow { background: rgba(255, 209, 102, 0.16); color: #ffe08a; }
+.icon-chip-violet { background: rgba(158, 127, 255, 0.16); color: #c3b0ff; }
+.icon-chip-orange { background: rgba(255, 159, 90, 0.16); color: #ffbf8a; }
+.icon-chip-teal   { background: rgba(94, 214, 209, 0.16); color: #a7f3ef; }
+.icon-chip-gray   { background: rgba(255, 255, 255, 0.08); color: var(--text-dim); }
+
+.category-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 3px;
+}
+.category-blue   { color: #8fb0ff; }
+.category-pink   { color: #ff9fce; }
+.category-green  { color: #8ef0b5; }
+.category-yellow { color: #ffe08a; }
+.category-violet { color: #c3b0ff; }
+.category-orange { color: #ffbf8a; }
+.category-teal   { color: #a7f3ef; }
+.category-gray   { color: var(--text-dim); }
 
 /* ===== Buttons ===== */
 .btn {
@@ -369,11 +420,21 @@ svg {
 }
 .checkbox.checked svg { opacity: 1; transform: scale(1); }
 
+.meal-row { border-left: 3px solid transparent; padding-left: 13px; }
 .meal-row .row-text { display: flex; flex-direction: column; gap: 2px; }
 .meal-slot-label { font-size: 11px; color: var(--text-faint); font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
 .meal-name { font-size: 14.5px; font-weight: 600; }
 .meal-kcal { font-size: 13px; font-weight: 700; color: var(--accent-2); white-space: nowrap; }
 .meal-kcal small { font-weight: 500; color: var(--text-faint); }
+
+.meal-row-yellow { border-left-color: var(--yellow); }
+.meal-row-yellow .meal-slot-label { color: #ffe08a; }
+.meal-row-blue { border-left-color: var(--accent-2); }
+.meal-row-blue .meal-slot-label { color: #8fb0ff; }
+.meal-row-violet { border-left-color: var(--violet); }
+.meal-row-violet .meal-slot-label { color: #c3b0ff; }
+.meal-row-green { border-left-color: var(--green); }
+.meal-row-green .meal-slot-label { color: #8ef0b5; }
 
 .empty-state {
   color: var(--text-faint);
@@ -425,7 +486,8 @@ svg {
 /* ===== Exercise cards ===== */
 .exercise-card { cursor: pointer; transition: transform 0.15s var(--ease), background 0.2s; }
 .exercise-card:active { transform: scale(0.98); }
-.exercise-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+.exercise-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+.exercise-info { flex: 1; min-width: 0; }
 .exercise-card h4 { margin: 0 0 4px; font-size: 16.5px; font-weight: 700; letter-spacing: -0.01em; }
 .muted { color: var(--text-dim); font-size: 13px; margin: 0; }
 .muted.small { font-size: 12px; }
