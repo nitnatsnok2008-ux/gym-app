@@ -1,0 +1,10 @@
+{
+  "name": "gym-tracker",
+  "version": "1.0.0",
+  "description": "Gym Tracker — eine browserbasierte App zum Verfolgen von Trainingseinheiten, Übungen und Fortschritt.",
+  "private": true,
+  "scripts": {
+    "start": "python3 -m http.server 8123",
+    "serve": "python3 -m http.server 8123"
+  }
+}
